@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .main {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            background-color: wheat;
+            /* border: 1px solid; */
+        }
+
+        .box {
+            height: 65vh;
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            background-color: blue;
+            box-shadow: 2px 1px 10px 10px gray;
+            border-radius: 15px;
+            /* border: 1px solid; */
+        }
+
+        .text {
+            color: black;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 20px;
+        }
+
+        .text2 {
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 18px;
+            margin-left: 25%;
+        }
+
+        #password {
+            height: 6vh;
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            background-color: white;
+            /* border: 1px solid white; */
+            margin-left: 5%;
+        }
+
+        .row {
+            height: 7vh;
+            width: 80%;
+            display: flex;
+            font-size: 18px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 600;
+            color: white;
+            justify-content: space-between;
+            margin-left: 5%;
+            /* border: 1px solid; */
+        }
+
+        .text3 {
+            font-size: 18px;
+            font-weight: 400;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        button {
+            height: 7vh;
+            width: 50%;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 10px;
+            background-color: black;
+            cursor: pointer;
+            margin-left: 25%;
+            border: none;
+        }
+        .inp{
+            height: 5vh;
+            width: 20%;
+            padding: 2%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1 class="text">Password Generator</h1>
+        <div class="box">
+            <div>
+                <h2 class="text2">Generated Password</h2>
+                <input id="password" type="text"  name="" id="">
+            </div>
+            <div class="row">
+                <h4 class="text3">Password Length:</h4>
+                <input class="inp" type="number" id="length">
+            </div>
+            <div class="row">
+                <h4 class="text3">Include Uppercase Letters:</h4>
+                <input type="checkbox" id="includeUppercase">
+            </div>
+            <div class="row">
+                <h4 class="text3">Include lowercase Letters:</h4>
+                <input type="checkbox" id="lowercaseChars">
+            </div>
+            <div class="row">
+
+                <h4 class="text3">Include Numbers:</h4>
+                <input type="checkbox" id="includeNumbers">
+            </div>
+            <div class="row">
+
+                <h4 class="text3">Include Symbols:</h4>
+                <input type="checkbox" id="includeSymbols">
+            </div>
+            <button id="generate">Generate Password</button>
+
+        </div>
+    </div>
+    <script>
+
+
+        let generate = document.getElementById("generate")
+
+
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // console.log(generatePassword);
+            let length = document.getElementById("length");
+            // console.log(length);
+            
+            let includeUppercase = document.getElementById("includeUppercase");
+            let includeNumbers = document.getElementById("includeNumbers");
+            let includeSymbols = document.getElementById("includeSymbols");
+            let lowercaseChars1 = document.getElementById("lowercaseChars");
+            console.log(lowercaseChars1);
+            let main_inp = document.getElementById("password")
+
+            let uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            let lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+            let numberChars = "0123456789";
+            let symbolChars = "!@#$%^&*()_-+=<>?/{}[]";
+
+            // let characters = lowercaseChars;
+            // let check = includeUppercase.checked;
+
+            function generatePassword() {
+
+                let characters = "";
+                let password = "";
+
+
+                if (includeUppercase.checked) {
+                    characters += uppercaseChars;
+                    // console.log(includeUppercase);
+
+                    // document.getElementById("password").textContent = characters;
+
+                }
+                if (lowercaseChars1.checked) {
+                    characters += lowercaseChars;
+                    // document.getElementById("password").textContent = characters;
+                }
+                if (includeNumbers.checked) {
+
+                    characters += numberChars;
+                    // console.log(includeNumbers);
+                    // document.getElementById("password").textContent = characters;
+
+                }
+
+                if (includeSymbols.checked) {
+
+                    characters += symbolChars;
+                    // document.getElementById("password").textContent = characters;
+
+                    // console.log(includeSymbols);
+                }
+
+
+
+                for (i = 0; i < length.value; i++) {
+                    let randomIndex = Math.floor(Math.random() * characters.length);
+                    console.log(randomIndex);
+                    password += characters[randomIndex];
+                    console.log(password);
+                }
+
+                main_inp.value = password
+
+
+
+            }
+
+            generate.addEventListener("click", function () {
+                generatePassword()
+            })
+
+        })
+
+    </script>
+</body>
+
+</html>
